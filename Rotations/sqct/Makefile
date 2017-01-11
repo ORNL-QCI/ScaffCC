@@ -7,11 +7,11 @@ CXX=g++
 CXXFLAGS=-fPIC -c -g -ggdb -O0 -std=c++0x
 CXXWARN=-Wextra -Wunreachable-code
 INC=-I/usr/include/boost
-LIB=-L/usr/lib/boost_1_48_0
+LIB=-L/usr/lib64
 
-LDFLAGS=-static-libstdc++ -static-libgcc -static
-LDLIBS=-Wl,-Bstatic -lgomp -lpthread -lmpfr -lgmpxx -lgmp -lrt
-BOOST=-Wl,-Bstatic -lboost_program_options -lboost_timer -lboost_chrono -lboost_system
+LDFLAGS=#-static-libstdc++ -static-libgcc -static
+LDLIBS=-Wl,-lgomp -lpthread -lmpfr -lgmpxx -lgmp -lrt
+BOOST=-Wl,-lboost_program_options -lboost_timer -lboost_chrono -lboost_system
 SO=-Wall -fPIC
 
 vpath %.cpp
@@ -44,7 +44,7 @@ OBJECTS=hprhelpers.o \
 all: rotZ
 
 rotZ: $(OBJECTS) rotZ.o
-	$(CXX) $(LDFLAGS) $(INC) $(LIB) $(OBJECTS) rotZ.o -o rotZ $(BOOST) $(LDLIBS)
+	$(CXX) $(LDFLAGS) $(INC) $(LIB) $(OBJECTS) rotZ.o -o rotZ $(LIB) $(BOOST) $(LDLIBS)
 
 sqct: $(OBJECTS) main.o
 	$(CXX) $(LDFLAGS) $(INC) $(LIB) $(OBJECTS) main.o -o sqct $(BOOST) $(LDLIBS)
