@@ -1,6 +1,6 @@
 from mccaskey/base-fedora-gcc6
 maintainer Alex McCaskey <mccaskeyaj@ornl.gov>
-run dnf install -y gmp-devel mpfr-devel https://github.com/genereese/togo/releases/download/v2.3r7/togo-2.3-7.noarch.rpm
+run dnf install -y gmp-devel mpfr-devel llvm-devel clang-devel https://github.com/genereese/togo/releases/download/v2.3r7/togo-2.3-7.noarch.rpm
 run git clone https://github.com/ORNL-QCI/ScaffCC && cd ScaffCC && make
 run cd /projects/ScaffCC && mkdir rpm_build && cd rpm_build && togo configure -n "Alex McCaskey" -e "mccaskeyaj@ornl.gov" \
 	&& togo project create scaffold && cd scaffold && mkdir -p root/usr/local/scaffold \
@@ -12,5 +12,5 @@ run cd /projects/ScaffCC && mkdir rpm_build && cd rpm_build && togo configure -n
 	&& sed -i -r "s/(Buildarch: *).*(/\1x86_64/" spec/header && sed -i -r "s/(Group: *).*(/\1Development/System/" spec/header \
 	&& sed -i -r "s/(Requires: *).*(/\1gcc-c++ python perl make gmp-devel mpfr-devel boost-devel/" spec/header \
 	&& togo build package && cp rpms/*.rpm /projects/
-
+run rm -rf /projects/ScaffCC/rpm_build
 
