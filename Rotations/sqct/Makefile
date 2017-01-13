@@ -7,7 +7,7 @@ CXX=g++
 CXXFLAGS=-fPIC -c -g -ggdb -O0 -std=c++0x
 CXXWARN=-Wextra -Wunreachable-code
 INC=-I/usr/include/boost
-LIB=-L/usr/lib64
+LIB=-L/usr/lib64 -L/usr/lib/x86_64-linux-gnu
 
 LDFLAGS=#-static-libstdc++ -static-libgcc -static
 LDLIBS=-Wl,-lgomp -lpthread -lmpfr -lgmpxx -lgmp -lrt
