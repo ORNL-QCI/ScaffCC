@@ -1,7 +1,7 @@
 from mccaskey/base-fedora-gcc6
 maintainer Alex McCaskey <mccaskeyaj@ornl.gov>
 run dnf install -y gmp-devel mpfr-devel https://github.com/genereese/togo/releases/download/v2.3r7/togo-2.3-7.noarch.rpm
-run git clone https://github.com/ORNL-QCI/ScaffCC && cd ScaffCC && make
+run git clone https://github.com/ORNL-QCI/ScaffCC && cd ScaffCC && export REQUIRES_RTTI=1 && make -j4
 run cd /projects/ScaffCC && mkdir rpm_build && cd rpm_build && togo configure -n "Alex McCaskey" -e "mccaskeyaj@ornl.gov" \
 	&& togo project create scaffold && cd scaffold && mkdir -p root/usr/local/scaffold \
 	&& mkdir -p root/usr/local/scaffold/build/Release+Asserts/include/extra-tools \
