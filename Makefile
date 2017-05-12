@@ -119,9 +119,9 @@ Clang: llvm build
 	@cd llvm/tools && /bin/rm -f clang && /bin/ln -s ../../clang;
 	@cd clang && /bin/rm -f build && /bin/ln -s ../build;
 	@if [ -z $(USE_GCC) ]; then \
-		cd build && ../llvm/configure --disable-debug-symbols && make ; \
+		cd build && ../llvm/configure --enable-shared --disable-debug-symbols && make ; \
 	else \
-		mkdir -p build && cd build && ../llvm/configure --disable-debug-symbols CC=gcc CXX=g++ && make ; fi
+		mkdir -p build && cd build && ../llvm/configure --enable-shared --disable-debug-symbols CC=gcc CXX=g++ && make ; fi
 	@if [ -z `echo ${PATH} | grep ${PWD}/Debug+Asserts/bin` ]; then \
 		export PATH=${PATH}:${PWD}/Debug+Asserts/bin; \
 	else true; fi
